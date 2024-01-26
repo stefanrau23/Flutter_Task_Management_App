@@ -29,6 +29,7 @@ class TaskView extends StatefulWidget {
 class _TaskViewState extends State<TaskView> {
   var title;
   var subtitle;
+  double priority = 0;
   DateTime? time;
   DateTime? date;
 
@@ -103,6 +104,7 @@ class _TaskViewState extends State<TaskView> {
       try {
         widget.taskControllerForTitle?.text = title;
         widget.taskControllerForSubtitle?.text = subtitle;
+        widget.task?.priority = priority;
 
         // widget.task?.createdAtDate = date!;
         // widget.task?.createdAtTime = time!;
@@ -119,6 +121,7 @@ class _TaskViewState extends State<TaskView> {
           createdAtTime: time,
           createdAtDate: date,
           subtitle: subtitle,
+          priority: priority,
         );
         BaseWidget.of(context).dataStore.addTask(task: task);
         Navigator.of(context).pop();
@@ -302,7 +305,8 @@ class _TaskViewState extends State<TaskView> {
                 controller: widget.taskControllerForSubtitle,
                 style: const TextStyle(color: Colors.black),
                 decoration: InputDecoration(
-                  prefixIcon: const Icon(Icons.bookmark_border, color: Colors.grey),
+                  prefixIcon:
+                      const Icon(Icons.bookmark_border, color: Colors.grey),
                   border: InputBorder.none,
                   counter: Container(),
                   hintText: MyString.addNote,
@@ -315,6 +319,29 @@ class _TaskViewState extends State<TaskView> {
                 },
               ),
             ),
+          ),
+
+          const SizedBox(
+            height: 10,
+          ),
+
+          ///Priority
+          /// Priority
+          Padding(
+            padding: const EdgeInsets.only(left: 30),
+            child: Text(MyString.priorityString, style: textTheme.headline5),
+          ),
+
+          /// Priority Slider
+          Slider(
+            value: priority,
+            min: 0,
+            max: 10,
+            onChanged: (value) {
+              setState(() {
+                priority = value;
+              });
+            },
           ),
 
           /// Time Picker

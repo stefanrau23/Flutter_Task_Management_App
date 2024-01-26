@@ -1,4 +1,4 @@
-// ignore_for_file: use_super_parameters
+// ignore_for_file: use_super_parameters, prefer_interpolation_to_compose_strings
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -92,7 +92,7 @@ class _TaskWidgetState extends State<TaskWidget> {
             title: Padding(
               padding: const EdgeInsets.only(bottom: 5, top: 3),
               child: Text(
-                taskControllerForTitle.text,
+                '${taskControllerForTitle.text} ${widget.task.priority.round()}',
                 style: TextStyle(
                     color: widget.task.isCompleted
                         ? MyColors.primaryColor
@@ -142,8 +142,7 @@ class _TaskWidgetState extends State<TaskWidget> {
                                   : Colors.grey),
                         ),
                         Text(
-                          DateFormat.yMMMEd()
-                              .format(widget.task.createdAtDate),
+                          DateFormat.yMMMEd().format(widget.task.createdAtDate),
                           style: TextStyle(
                               fontSize: 12,
                               color: widget.task.isCompleted

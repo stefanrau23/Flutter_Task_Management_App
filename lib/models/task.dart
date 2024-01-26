@@ -9,6 +9,7 @@ class Task extends HiveObject {
       {required this.id,
       required this.title,
       required this.subtitle,
+      required this.priority,
       required this.createdAtTime,
       required this.createdAtDate,
       required this.isCompleted});
@@ -37,10 +38,15 @@ class Task extends HiveObject {
   @HiveField(5)
   bool isCompleted;
 
-  /// create new Task 
+  /// PRIORITY
+  @HiveField(6)
+  double priority;
+
+  /// create new Task
   factory Task.create({
     required String? title,
     required String? subtitle,
+    required double? priority,
     DateTime? createdAtTime,
     DateTime? createdAtDate,
   }) =>
@@ -48,6 +54,7 @@ class Task extends HiveObject {
         id: const Uuid().v1(),
         title: title ?? "",
         subtitle: subtitle ?? "",
+        priority: priority ?? 0,
         createdAtTime: createdAtTime ?? DateTime.now(),
         isCompleted: false,
         createdAtDate: createdAtDate ?? DateTime.now(),

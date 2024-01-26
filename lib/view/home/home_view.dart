@@ -166,15 +166,15 @@ class _HomeViewState extends State<HomeView> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: const [
                             Icon(
-                              Icons.delete_outline,
-                              color: Colors.grey,
+                              Icons.deck,
+                              color: Colors.red,
                             ),
                             SizedBox(
                               width: 8,
                             ),
                             Text(MyString.deletedTask,
                                 style: TextStyle(
-                                  color: Colors.grey,
+                                  color: Colors.red,
                                 ))
                           ],
                         ),
