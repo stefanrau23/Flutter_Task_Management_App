@@ -98,6 +98,7 @@ class _TaskViewState extends State<TaskView> {
   }
 
   /// If any task already exist app will update it otherwise the app will add a new task
+  /// If any task already exists, app will update it; otherwise, the app will add a new task
   dynamic isTaskAlreadyExistUpdateTask() {
     if (widget.taskControllerForTitle?.text != null &&
         widget.taskControllerForSubtitle?.text != null) {
@@ -106,9 +107,7 @@ class _TaskViewState extends State<TaskView> {
         widget.taskControllerForSubtitle?.text = subtitle;
         widget.task?.priority = priority;
 
-        // widget.task?.createdAtDate = date!;
-        // widget.task?.createdAtTime = time!;
-
+        // Update the priority of the task in the database
         widget.task?.save();
         Navigator.of(context).pop();
       } catch (error) {
@@ -336,7 +335,7 @@ class _TaskViewState extends State<TaskView> {
           Slider(
             value: priority,
             min: 0,
-            max: 10,
+            max: 5,
             onChanged: (value) {
               setState(() {
                 priority = value;

@@ -1,4 +1,4 @@
-// ignore_for_file: use_super_parameters, prefer_interpolation_to_compose_strings
+// ignore_for_file: use_super_parameters, prefer_interpolation_to_compose_strings, unnecessary_string_interpolations, prefer_const_constructors
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -91,16 +91,33 @@ class _TaskWidgetState extends State<TaskWidget> {
             /// title of Task
             title: Padding(
               padding: const EdgeInsets.only(bottom: 5, top: 3),
-              child: Text(
-                '${taskControllerForTitle.text} ${widget.task.priority.round()}',
-                style: TextStyle(
-                    color: widget.task.isCompleted
-                        ? MyColors.primaryColor
-                        : Colors.black,
-                    fontWeight: FontWeight.w500,
-                    decoration: widget.task.isCompleted
-                        ? TextDecoration.lineThrough
-                        : null),
+              child: Row(
+                children: [
+                  Text(
+                    '${taskControllerForTitle.text}',
+                    style: TextStyle(
+                      color: widget.task.isCompleted
+                          ? MyColors.primaryColor
+                          : Colors.black,
+                      fontWeight: FontWeight.w500,
+                      decoration: widget.task.isCompleted
+                          ? TextDecoration.lineThrough
+                          : null,
+                    ),
+                  ),
+                  const SizedBox(width: 5),
+                  // Display priority stars based on the task's priority
+                  Row(
+                    children: List.generate(
+                      widget.task.priority.round(),
+                      (index) => Icon(
+                        Icons.star,
+                        color: Colors.amber,
+                        size: 20,
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
 
